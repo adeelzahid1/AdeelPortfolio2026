@@ -44,13 +44,13 @@ jobs:
 
       - name: Deploy to Surge
         if: github.event_name != 'pull_request'
-        working-directory: dist/adeelzahid-portfolio/browser
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
-          test -f index.html
-          npx --yes surge ./ adeelzahid.surge.sh --token "$SURGE_TOKEN"
+          test -f dist/adeelzahid-portfolio/browser/index.html
+          npm install -g surge
+          surge dist/adeelzahid-portfolio/browser adeelzahid.surge.sh --token "$SURGE_TOKEN"
 
       - name: Upload dist
         if: always()
