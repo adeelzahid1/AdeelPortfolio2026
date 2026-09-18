@@ -1,0 +1,63 @@
+<header class="nav-shell" [class.is-scrolled]="scrolled()">
+  <div class="container-narrow nav-inner">
+    <a class="brand" href="#hero" (click)="go('hero'); $event.preventDefault()" [attr.aria-label]="profile.name">
+      <span class="brand-tag" aria-hidden="true">&lt;</span>
+      <span class="brand-script">Adeel Zahid</span>
+      <span class="brand-tag" aria-hidden="true">/&gt;</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Primary">
+      @for (link of links; track link.id) {
+        <a
+          href="#{{ link.id }}"
+          class="nav-link"
+          [class.active]="scrollSpy.activeSection() === link.id"
+          (click)="go(link.id); $event.preventDefault()"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+
+    <div class="nav-actions">
+      <button
+        type="button"
+        class="theme-toggle"
+        (click)="toggleTheme()"
+        [attr.aria-label]="theme.isDark() ? 'Switch to light mode' : 'Switch to dark mode'"
+      >
+        <span class="icon" [class.show]="theme.isDark()" aria-hidden="true">
+          <i class="fa-solid fa-sun"></i>
+        </span>
+        <span class="icon" [class.show]="!theme.isDark()" aria-hidden="true">
+          <i class="fa-solid fa-moon"></i>
+        </span>
+      </button>
+
+      <button
+        type="button"
+        class="menu-toggle"
+        (click)="toggleMenu()"
+        [attr.aria-expanded]="menuOpen()"
+        aria-controls="mobile-nav"
+        aria-label="Toggle menu"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  @if (menuOpen()) {
+    <nav id="mobile-nav" class="nav-mobile" aria-label="Mobile">
+      @for (link of links; track link.id) {
+        <a
+          href="#{{ link.id }}"
+          [class.active]="scrollSpy.activeSection() === link.id"
+          (click)="go(link.id); $event.preventDefault()"
+        >
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+  }
+</header>

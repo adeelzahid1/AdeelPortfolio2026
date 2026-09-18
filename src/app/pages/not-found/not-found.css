@@ -1,0 +1,437 @@
+.not-found {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: calc(100svh - var(--nav-height));
+  display: grid;
+  place-items: center;
+  padding: clamp(2.5rem, 6vw, 4.5rem) 0;
+  background:
+    radial-gradient(circle at 50% 38%, var(--color-glow), transparent 34rem),
+    var(--color-bg);
+}
+
+.nf-boxes {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      var(--color-grid) 0,
+      var(--color-grid) 1px,
+      transparent 1px,
+      transparent 22px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--color-grid) 0,
+      var(--color-grid) 1px,
+      transparent 1px,
+      transparent 22px
+    );
+  mask-image: radial-gradient(ellipse at 50% 42%, #000 38%, transparent 76%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 42%, #000 38%, transparent 76%);
+  animation: gridDrift 18s linear infinite;
+}
+
+.nf-glow {
+  position: absolute;
+  width: 28rem;
+  height: 28rem;
+  left: 50%;
+  top: 36%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-glow), transparent 68%);
+  filter: blur(8px);
+  animation: glowPulse 3.6s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+  will-change: opacity, scale;
+}
+
+.nf-orb {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--color-accent);
+  box-shadow: 0 0 18px var(--color-glow);
+  opacity: 0.45;
+}
+
+.nf-orb-a {
+  width: 9px;
+  height: 9px;
+  top: 22%;
+  left: 18%;
+  animation: orbFloat 7s ease-in-out infinite;
+}
+
+.nf-orb-b {
+  width: 6px;
+  height: 6px;
+  top: 68%;
+  right: 16%;
+  animation: orbFloat 9s ease-in-out infinite reverse;
+}
+
+.nf-orb-c {
+  width: 12px;
+  height: 12px;
+  bottom: 18%;
+  left: 28%;
+  opacity: 0.28;
+  animation: orbFloat 11s ease-in-out infinite 0.6s;
+}
+
+.nf-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  animation: nfIn 0.7s ease both;
+}
+
+.nf-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.4rem;
+}
+
+.nf-pulse {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 0 var(--color-glow);
+  animation: statusPulse 1.8s ease-out infinite;
+}
+
+.nf-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 0.4rem 0 0.35rem;
+  min-height: clamp(8.5rem, 24vw, 13.5rem);
+}
+
+.nf-radar {
+  position: absolute;
+  width: min(22rem, 72vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.nf-ring {
+  position: absolute;
+  inset: 12%;
+  border: 1px solid color-mix(in srgb, var(--color-accent) 28%, transparent);
+  border-radius: 50%;
+  animation: radarExpand 3.4s ease-out infinite;
+}
+
+.nf-ring-late {
+  animation-delay: 1.7s;
+}
+
+.nf-sweep {
+  position: absolute;
+  inset: 18%;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent 0 78%, color-mix(in srgb, var(--color-accent) 22%, transparent) 100%);
+  animation: radarSpin 6s linear infinite;
+  mask-image: radial-gradient(circle, transparent 52%, #000 53%, #000 99%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle, transparent 52%, #000 53%, #000 99%, transparent 100%);
+}
+
+.nf-digits {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.15rem, 1.4vw, 0.7rem);
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(6.2rem, 20vw, 11.5rem);
+  line-height: 0.85;
+  letter-spacing: -0.07em;
+  color: var(--color-text);
+}
+
+.digit {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(180deg, var(--color-text) 20%, var(--color-accent-bright));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: digitFloat 3.8s ease-in-out infinite;
+  filter: drop-shadow(0 12px 28px var(--color-glow));
+}
+
+.digit-late {
+  animation-delay: 0.55s;
+}
+
+.digit::before,
+.digit::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  background: none;
+  -webkit-text-fill-color: var(--color-accent);
+  color: var(--color-accent);
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+.digit::before {
+  animation: glitchA 3.2s steps(2, start) infinite;
+}
+
+.digit::after {
+  -webkit-text-fill-color: #67e8f9;
+  color: #67e8f9;
+  animation: glitchB 2.6s steps(2, start) infinite reverse;
+}
+
+.digit-zero {
+  position: relative;
+}
+
+.zero-orbit {
+  position: absolute;
+  inset: -14%;
+  border: 1.5px dashed color-mix(in srgb, var(--color-accent) 55%, transparent);
+  border-radius: 50%;
+  animation: orbitSpin 8s linear infinite;
+  pointer-events: none;
+}
+
+.nf-title {
+  font-size: clamp(1.7rem, 4.2vw, 2.55rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin: 0.35rem 0 0.75rem;
+  animation: nfIn 0.7s ease 0.12s both;
+}
+
+.nf-copy {
+  margin-inline: auto;
+  max-width: 36rem;
+  margin-bottom: 1.35rem;
+  animation: nfIn 0.7s ease 0.2s both;
+}
+
+.nf-path {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  max-width: 100%;
+  margin: 0 auto 1.75rem;
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-elevated) 88%, transparent);
+  font-size: 0.82rem;
+  animation: nfIn 0.7s ease 0.28s both;
+}
+
+.nf-method {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.nf-url {
+  color: var(--color-text);
+  overflow-wrap: anywhere;
+}
+
+.nf-status {
+  color: #f87171;
+  font-weight: 600;
+}
+
+.nf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  animation: nfIn 0.7s ease 0.36s both;
+}
+
+.nf-actions .btn-teal i {
+  font-size: 0.85em;
+}
+
+@keyframes nfIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes digitFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glitchA {
+  0%,
+  86%,
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+    opacity: 0;
+  }
+  88% {
+    clip-path: inset(12% 0 58% 0);
+    transform: translate(-6px, -2px);
+    opacity: 0.7;
+  }
+  92% {
+    clip-path: inset(62% 0 8% 0);
+    transform: translate(5px, 1px);
+    opacity: 0.55;
+  }
+}
+
+@keyframes glitchB {
+  0%,
+  84%,
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+    opacity: 0;
+  }
+  87% {
+    clip-path: inset(48% 0 18% 0);
+    transform: translate(7px, 2px);
+    opacity: 0.45;
+  }
+  91% {
+    clip-path: inset(8% 0 70% 0);
+    transform: translate(-4px, -1px);
+    opacity: 0.6;
+  }
+}
+
+@keyframes orbitSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes radarSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes radarExpand {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    scale: 1;
+  }
+  50% {
+    opacity: 0.9;
+    scale: 1.08;
+  }
+}
+
+@keyframes statusPulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-accent) 55%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(12px, -18px);
+  }
+}
+
+@keyframes gridDrift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 22px 22px, 22px 22px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .nf-path {
+    border-radius: 1rem;
+    padding: 0.7rem 0.9rem;
+  }
+
+  .zero-orbit {
+    inset: -10%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nf-boxes,
+  .nf-glow,
+  .nf-orb,
+  .digit,
+  .digit::before,
+  .digit::after,
+  .zero-orbit,
+  .nf-ring,
+  .nf-sweep,
+  .nf-pulse,
+  .nf-inner,
+  .nf-title,
+  .nf-copy,
+  .nf-path,
+  .nf-actions {
+    animation: none !important;
+  }
+
+  .nf-inner,
+  .nf-title,
+  .nf-copy,
+  .nf-path,
+  .nf-actions {
+    opacity: 1;
+    transform: none;
+  }
+}

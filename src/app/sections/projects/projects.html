@@ -1,0 +1,68 @@
+<section id="work" class="section work" aria-labelledby="work-heading">
+  <div class="container-narrow">
+    <div appRevealOnScroll>
+      <p class="eyebrow">Selected work</p>
+      <h2 id="work-heading" class="section-title">Projects &amp; impact</h2>
+      <p class="section-lead">
+        Case studies from logistics, commerce operations, HR/ERP, and mobile-backed learning platforms.
+      </p>
+    </div>
+
+    <div class="row g-4 project-list">
+      @for (project of projects; track project.name) {
+        <div class="col-12">
+          <article class="card-surface project-card" appRevealOnScroll>
+            <div class="project-head">
+              <h3>{{ project.name }}</h3>
+              <p class="mono role">{{ project.role }}</p>
+            </div>
+            <p class="label">Problem</p>
+            <p>{{ project.problem }}</p>
+            <p class="label">Impact</p>
+            <p>{{ project.impact }}</p>
+            <div class="tags">
+              @for (t of project.tech; track t) {
+                <span class="tech-tag">{{ t }}</span>
+              }
+            </div>
+            @if (project.url) {
+              <a class="project-link" [href]="project.url" target="_blank" rel="noopener noreferrer">
+                Visit site →
+              </a>
+            }
+          </article>
+        </div>
+      }
+    </div>
+
+    <div class="exp-block" appRevealOnScroll>
+      <h3 class="exp-title">Experience timeline</h3>
+      <p class="exp-subtitle">Career path — most recent first</p>
+      <ol class="sprint">
+        @for (job of experience; track job.company + job.period; let i = $index) {
+          <li class="sprint-row">
+            <article class="sprint-copy">
+              <h4>{{ job.title }}</h4>
+              <p class="sprint-company">{{ job.company }}</p>
+              @if (job.url) {
+                <a class="job-url" [href]="job.url" target="_blank" rel="noopener noreferrer">{{ job.url }}</a>
+              }
+              <p class="sprint-summary">{{ job.summary }}</p>
+              <ul>
+                @for (h of job.highlights; track h) {
+                  <li>{{ h }}</li>
+                }
+              </ul>
+            </article>
+            <div class="sprint-node">
+              <div class="sprint-ring">
+                <span class="sprint-week">ROLE {{ i + 1 }}</span>
+                <span class="sprint-period">{{ job.period }}</span>
+              </div>
+            </div>
+          </li>
+        }
+      </ol>
+    </div>
+  </div>
+</section>

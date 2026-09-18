@@ -1,0 +1,179 @@
+/* Design tokens + Bootstrap CSS variable overrides (no SCSS) */
+@font-face {
+  font-family: 'Photograph Signature';
+  src: url('/assets/fonts/PhotographSignature.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-heading: 'Sora', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-script: 'Photograph Signature', cursive;
+
+  --radius: 12px;
+  --nav-height: 72px;
+  --content-width: 80%;
+  --transition-theme: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+
+  /* Bootstrap overrides — teal, never default blue */
+  --bs-primary: #14b8a6;
+  --bs-primary-rgb: 20, 184, 166;
+  --bs-link-color: #14b8a6;
+  --bs-link-hover-color: #2dd4bf;
+  --bs-focus-ring-color: rgba(20, 184, 166, 0.35);
+  --bs-body-font-family: var(--font-body);
+  --bs-border-radius: var(--radius);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-height);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: var(--transition-theme);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-accent-bright);
+}
+
+::selection {
+  background: rgba(20, 184, 166, 0.35);
+  color: var(--color-text);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container-narrow {
+  width: var(--content-width);
+  margin-inline: auto;
+}
+
+.section {
+  padding: clamp(3.5rem, 8vw, 6rem) 0;
+  position: relative;
+}
+
+.section-title {
+  font-size: clamp(2.2rem, 5.2vw, 3.15rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 0.85rem;
+}
+
+.section-lead {
+  color: var(--color-muted);
+  max-width: min(72rem, 100%);
+  margin-bottom: 2rem;
+  line-height: 1.65;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.btn-teal {
+  --bs-btn-color: #042f2e;
+  --bs-btn-bg: var(--color-accent);
+  --bs-btn-border-color: var(--color-accent);
+  --bs-btn-hover-color: #042f2e;
+  --bs-btn-hover-bg: var(--color-accent-bright);
+  --bs-btn-hover-border-color: var(--color-accent-bright);
+  --bs-btn-active-color: #042f2e;
+  --bs-btn-active-bg: var(--color-accent-bright);
+  --bs-btn-active-border-color: var(--color-accent-bright);
+  --bs-btn-focus-shadow-rgb: 20, 184, 166;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 0.65rem 1.35rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-teal:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 0 1px var(--color-accent), 0 8px 28px var(--color-glow);
+}
+
+.btn-ghost {
+  min-height: 44px;
+  padding: 0.65rem 1.35rem;
+  border-radius: 999px;
+  font-weight: 600;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.btn-ghost:hover {
+  transform: scale(1.03);
+  border-color: var(--color-accent);
+  color: var(--color-text);
+  box-shadow: 0 0 20px var(--color-glow);
+  background: var(--color-elevated);
+}
+
+.card-surface {
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-surface:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 40px var(--color-glow);
+}
+
+.tech-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-muted);
+  display: inline-block;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

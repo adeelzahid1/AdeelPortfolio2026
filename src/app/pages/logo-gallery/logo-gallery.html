@@ -1,0 +1,46 @@
+<section class="section logo-gallery" aria-labelledby="logo-gallery-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <a class="back-link" routerLink="/">
+      <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+      Back to home
+    </a>
+    <p class="eyebrow">Gallery</p>
+    <h1 id="logo-gallery-heading" class="section-title">Projects &amp; partners</h1>
+    <p class="section-lead">
+      Logos from products and companies I’ve built with — grouped by workplace.
+    </p>
+  </div>
+
+  @for (group of groups; track group.id) {
+    <section class="logo-group" [id]="group.id" [attr.aria-labelledby]="group.id + '-heading'">
+      <div class="container-narrow" appRevealOnScroll>
+        <p class="eyebrow">0{{ $index + 1 }}</p>
+        <div class="group-head">
+          @if (group.headingLogo) {
+            <div class="group-logo" [class.is-dark]="group.id === 'h3' || group.id === 'tharsol'">
+              <img
+                [src]="group.headingLogo.src"
+                [alt]="group.title + ' logo'"
+                width="72"
+                height="72"
+              />
+            </div>
+          }
+          <h2 [id]="group.id + '-heading'" class="group-title">{{ group.title }}</h2>
+        </div>
+        <p class="section-lead">{{ group.detail }}</p>
+
+        <div class="logo-grid">
+          @for (logo of group.logos; track logo.file) {
+            <article class="card-surface logo-card">
+              <div class="logo-frame">
+                <img [src]="logo.src" [alt]="logo.name + ' logo'" loading="lazy" decoding="async" />
+              </div>
+              <h3>{{ logo.name }}</h3>
+            </article>
+          }
+        </div>
+      </div>
+    </section>
+  }
+</section>

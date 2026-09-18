@@ -1,0 +1,100 @@
+<section id="contact" class="section contact" aria-labelledby="contact-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <p class="eyebrow">Contact</p>
+    <h2 id="contact-heading" class="section-title">Let's build something solid</h2>
+    <p class="section-lead">
+      Prefer email or LinkedIn for opportunities. Based in {{ profile.location }}, open to remote and UAE-facing roles.
+    </p>
+
+    <div class="contact-grid">
+      <div class="links card-surface">
+        <a [href]="'mailto:' + profile.email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <span>{{ profile.email }}</span>
+        </a>
+        <a [href]="'tel:' + profile.phone">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <span>{{ profile.phoneDisplay }}</span>
+        </a>
+        <a [href]="profile.linkedin" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a [href]="profile.github" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+          <span>GitHub</span>
+        </a>
+        <a [href]="profile.twitter" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+          <span>Twitter / X</span>
+        </a>
+        <a [href]="profile.facebook" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+          <span>Facebook</span>
+        </a>
+        <a [href]="profile.portfolio" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-globe" aria-hidden="true"></i>
+          <span>Website</span>
+        </a>
+        <div class="edu">
+          <strong>{{ education.degree }}</strong>
+          <span>{{ education.school }} · {{ education.year }}</span>
+          <span>{{ education.cert }}</span>
+        </div>
+      </div>
+
+      <form class="card-surface form" (submit)="$event.preventDefault(); sendMail()">
+        <label>
+          Name
+          <input
+            type="text"
+            name="name"
+            autocomplete="name"
+            [ngModel]="name()"
+            (ngModelChange)="name.set($event)"
+            placeholder="Your name"
+          />
+        </label>
+        <label>
+          Message
+          <textarea
+            name="message"
+            rows="5"
+            [ngModel]="message()"
+            (ngModelChange)="message.set($event)"
+            placeholder="Tell me about the role or project"
+          ></textarea>
+        </label>
+        <button type="submit" class="btn btn-teal">
+          Send via Email <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+        </button>
+      </form>
+    </div>
+
+    <div class="testimonials-block">
+      <p class="eyebrow">Testimonials</p>
+      <h2 id="testimonials-heading" class="section-title">What leaders say</h2>
+      <p class="section-lead">
+        Feedback from CEOs and CTOs I’ve worked with on logistics, HR/ERP, and learning platforms —
+        focused on delivery, ownership, and technical depth.
+      </p>
+
+      <div class="testimonials">
+        @for (t of testimonials; track t.name) {
+          <blockquote class="card-surface quote">
+            <p>“{{ t.quote }}”</p>
+            <footer>
+              <div class="quote-logo" [class.is-dark]="t.logoDark">
+                <img [src]="t.logo" [alt]="t.role + ' logo'" width="48" height="48" />
+              </div>
+              <div>
+                <strong>{{ t.name }}</strong>
+                <span>{{ t.role }}</span>
+              </div>
+            </footer>
+          </blockquote>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,23 @@
+<section id="services" class="section services" aria-labelledby="services-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <p class="eyebrow">Offer</p>
+    <h2 id="services-heading" class="section-title">How I can help</h2>
+    <p class="section-lead">
+      Backend-heavy delivery with Angular on the frontend — APIs, data, and production systems.
+    </p>
+
+    <div class="row g-4 services-row">
+      @for (svc of services; track svc.name) {
+        <div class="col-12 col-md-4">
+          <article class="card-surface service-card">
+            <div class="service-icon" aria-hidden="true">
+              <i [class]="svc.icon"></i>
+            </div>
+            <h3>{{ svc.name }}</h3>
+            <p>{{ svc.detail }}</p>
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+</section>

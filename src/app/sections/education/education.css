@@ -1,0 +1,112 @@
+.edu-track {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem 1rem;
+  position: relative;
+}
+
+.edu-item {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 0.95rem;
+}
+
+.edu-circle {
+  width: 5.6rem;
+  height: 5.6rem;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  background: var(--color-elevated);
+  box-shadow: 0 0 0 6px var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.22s ease, background-color 0.22s ease, color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.edu-circle i {
+  font-size: 1.05rem;
+  color: var(--color-accent);
+  display: inline-block;
+  transition: font-size 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+
+.edu-circle span {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.edu-item:hover .edu-circle {
+  transform: scale(1.06);
+  background: var(--color-accent);
+  color: #042f2e;
+  box-shadow: 0 0 0 6px var(--color-bg), 0 10px 24px var(--color-glow);
+}
+
+.edu-item:hover .edu-circle i {
+  color: #042f2e;
+  font-size: calc(1.05rem + 2px);
+  transform: translateY(-1px);
+}
+
+.edu-card {
+  width: 100%;
+  padding: 1.05rem 1rem 1.15rem;
+}
+
+.edu-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.98rem;
+  line-height: 1.35;
+  transition: font-size 0.22s ease, color 0.22s ease;
+}
+
+.edu-item:hover .edu-card h3 {
+  font-size: 1.06rem;
+  color: var(--color-accent);
+}
+
+.edu-period {
+  margin: 0 0 0.4rem;
+  color: var(--color-accent);
+  font-size: 0.75rem;
+}
+
+.edu-detail {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 900px) {
+  .edu-track {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.15rem;
+  }
+
+  .edu-track::before {
+    content: '';
+    position: absolute;
+    top: 2.8rem;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+    z-index: 0;
+  }
+}
+
+@media (max-width: 479px) {
+  .edu-track {
+    grid-template-columns: 1fr;
+  }
+}

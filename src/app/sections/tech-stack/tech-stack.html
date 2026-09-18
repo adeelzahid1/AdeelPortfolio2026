@@ -1,0 +1,18 @@
+<section id="tech" class="section" aria-labelledby="tech-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <p class="eyebrow">Tech stack</p>
+    <h2 id="tech-heading" class="section-title">Tools I ship with</h2>
+    <p class="section-lead">
+      Focused on Angular 20, .NET 8, SQL Server, and clean architecture — with cloud, CI/CD, and AI-assisted delivery.
+    </p>
+
+    <ul class="skill-grid">
+      @for (skill of skills; track skill.name) {
+        <li class="skill-badge card-surface">
+          <span class="skill-name">{{ skill.name }}</span>
+          <span class="skill-cat mono">{{ skill.category }}</span>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

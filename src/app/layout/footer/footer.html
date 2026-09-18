@@ -1,0 +1,25 @@
+<footer class="site-footer">
+  <div class="container-narrow footer-inner">
+    <p class="mb-0">© {{ year }} {{ profile.name }}. Built with Angular 20.</p>
+    <div class="footer-links">
+      <a [href]="profile.github" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <i class="fa-brands fa-github" aria-hidden="true"></i>
+      </a>
+      <a [href]="profile.linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+      </a>
+      <a [href]="profile.twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+      </a>
+      <a [href]="profile.facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+      </a>
+      <a [href]="'mailto:' + profile.email" aria-label="Email">
+        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      </a>
+      <a [href]="profile.portfolio" target="_blank" rel="noopener noreferrer" aria-label="Website">
+        <i class="fa-solid fa-globe" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+</footer>

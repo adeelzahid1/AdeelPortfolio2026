@@ -1,0 +1,69 @@
+.about-layout {
+  --bs-gutter-x: 1.75rem;
+  margin-inline: 0;
+}
+
+.about-copy {
+  padding-left: 0;
+}
+
+.about-copy .section-lead {
+  margin-bottom: 1.15rem;
+}
+
+.about-copy .section-lead:last-child {
+  margin-bottom: 0;
+}
+
+.about-aside {
+  padding-right: 0;
+}
+
+.about-card {
+  padding: 1.35rem 1.4rem;
+  height: 100%;
+}
+
+.about-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.65rem;
+}
+
+.about-card p {
+  color: var(--color-muted);
+  margin: 0;
+  line-height: 1.65;
+}
+
+.about-card strong {
+  color: var(--color-text);
+}
+
+.award-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.award-list li span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  margin: 0.2rem 0 0.35rem;
+}
+
+.award-list li p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 767.98px) {
+  .about-copy,
+  .about-aside {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+

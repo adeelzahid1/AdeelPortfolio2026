@@ -25,6 +25,23 @@ Output: `dist/adeelzahid-portfolio/browser`
 npx surge dist/adeelzahid-portfolio/browser adeelzahid.surge.sh
 ```
 
+## GitHub Actions CI/CD
+
+Workflow: `.github/workflows/ci-cd.yml`
+
+- Pull requests and pushes: production build
+- Push to `main` / `master`: deploy to [adeelzahid.surge.sh](https://adeelzahid.surge.sh)
+
+### Secret (required for deploy)
+
+GitHub repo → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
+
+| Name | Value |
+|---|---|
+| `SURGE_TOKEN` | output of `npx surge token` |
+
+Do not commit this token. After the secret is saved, push to `main` to trigger deploy.
+
 ## Notes
 
 - Theme preference is stored in `localStorage` under `adeel-portfolio-theme`.

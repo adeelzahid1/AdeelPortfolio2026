@@ -1,0 +1,25 @@
+<section id="education" class="section education" aria-labelledby="education-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <p class="eyebrow">Background</p>
+    <h2 id="education-heading" class="section-title">Education</h2>
+    <p class="section-lead">
+      Degrees and certifications, from school through postgraduate study.
+    </p>
+
+    <div class="edu-track">
+      @for (item of education; track item.title) {
+        <article class="edu-item">
+          <div class="edu-circle" aria-hidden="true">
+            <i [class]="item.icon"></i>
+            <span>{{ item.short }}</span>
+          </div>
+          <div class="card-surface edu-card">
+            <h3>{{ item.title }}</h3>
+            <p class="edu-period mono">{{ item.period }}</p>
+            <p class="edu-detail">{{ item.detail }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

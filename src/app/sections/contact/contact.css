@@ -1,0 +1,154 @@
+.contact-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.links {
+  padding: 1.35rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.links a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.links a i {
+  width: 1.15rem;
+  text-align: center;
+  color: var(--color-accent);
+  font-size: 1.05rem;
+}
+
+.links a:hover {
+  color: var(--color-accent);
+}
+
+.edu {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  display: grid;
+  gap: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.edu strong {
+  color: var(--color-text);
+}
+
+.form {
+  padding: 1.35rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.form label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  padding: 0.75rem 0.9rem;
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-glow);
+}
+
+.testimonials-block {
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.testimonials {
+  display: grid;
+  gap: 1rem;
+}
+
+.quote {
+  padding: 1.25rem 1.35rem;
+  margin: 0;
+}
+
+.quote p {
+  color: var(--color-muted);
+  line-height: 1.65;
+  margin-bottom: 0.85rem;
+}
+
+.quote footer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.quote-logo {
+  width: 2.6rem;
+  height: 2.6rem;
+  flex-shrink: 0;
+  border-radius: 0.55rem;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+
+.quote-logo.is-dark {
+  background: #000;
+}
+
+.quote-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.quote footer div {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.quote footer span {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+
+  .testimonials {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1400px) {
+  .contact-grid {
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 1.75rem;
+  }
+}

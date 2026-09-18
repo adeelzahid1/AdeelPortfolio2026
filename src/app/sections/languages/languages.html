@@ -1,0 +1,23 @@
+<section id="languages" class="section languages" aria-labelledby="languages-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <p class="eyebrow">Communication</p>
+    <h2 id="languages-heading" class="section-title">Languages</h2>
+    <p class="section-lead">
+      How I work with teams, clients, and documentation across languages.
+    </p>
+
+    <div class="row g-4 language-row">
+      @for (lang of languages; track lang.name) {
+        <div class="col-12 col-md-4">
+          <article class="card-surface language-card">
+            <div class="language-icon" aria-hidden="true">
+              <i [class]="lang.icon"></i>
+            </div>
+            <h3>{{ lang.name }}</h3>
+            <p>{{ lang.level }}</p>
+          </article>
+        </div>
+      }
+    </div>
+  </div>
+</section>

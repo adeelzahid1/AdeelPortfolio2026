@@ -1,0 +1,68 @@
+<section id="interests" class="section more" aria-labelledby="interests-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <div
+      class="interests-block"
+      (mouseenter)="pauseAuto('hover')"
+      (mouseleave)="resumeAuto('hover')"
+    >
+      <div class="interests-toolbar">
+        <div>
+          <p class="eyebrow">Interests</p>
+          <h2 id="interests-heading" class="section-title interests-title">What I do off the clock</h2>
+        </div>
+        <div class="interest-nav">
+          <button type="button" class="interest-nav-btn" (click)="prevInterest()" aria-label="Previous interest">
+            <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          <button type="button" class="interest-nav-btn" (click)="nextInterest()" aria-label="Next interest">
+            <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        #interestTrack
+        class="interest-slider"
+        [class.is-dragging]="dragging()"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Personal interests"
+        (scroll)="onInterestScroll()"
+        (pointerdown)="onPointerDown($event)"
+        (pointermove)="onPointerMove($event)"
+        (pointerup)="onPointerUp($event)"
+        (pointercancel)="onPointerUp($event)"
+      >
+        @for (item of loopedInterests; track $index) {
+          <article
+            class="card-surface interest-slide"
+            [class.is-edge-left]="slideTone()[$index] === 'edge-left'"
+            [class.is-edge-right]="slideTone()[$index] === 'edge-right'"
+            [class.is-focus]="slideTone()[$index] === 'focus'"
+            [attr.aria-hidden]="slideTone()[$index] === 'off' ? 'true' : null"
+            [attr.aria-label]="item.name"
+          >
+            <div class="interest-icon" aria-hidden="true">
+              <i [class]="item.icon"></i>
+            </div>
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.detail }}</p>
+          </article>
+        }
+      </div>
+
+      <div class="interest-dots" role="tablist" aria-label="Interest slides">
+        @for (item of interests; track item.name; let i = $index) {
+          <button
+            type="button"
+            class="interest-dot"
+            [class.is-active]="activeInterest() === i"
+            [attr.aria-label]="'Go to ' + item.name"
+            [attr.aria-current]="activeInterest() === i ? 'true' : null"
+            (click)="goToInterest(i)"
+          ></button>
+        }
+      </div>
+    </div>
+  </div>
+</section>

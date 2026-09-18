@@ -1,0 +1,79 @@
+<section id="hero" class="hero section" aria-labelledby="hero-heading">
+  <div class="hero-boxes" aria-hidden="true"></div>
+  <div class="corner-arcs corner-arcs-top" aria-hidden="true"></div>
+  <div class="corner-arcs corner-arcs-bottom" aria-hidden="true"></div>
+
+  <div class="container-narrow hero-layout">
+    <div class="hero-content">
+      <p class="hero-kicker">
+        Hello! I’m
+        <span class="wave" role="img" aria-label="waving hand">👋</span>
+      </p>
+      <h1 id="hero-heading" class="heading-brand hero-name">
+        <span>Adeel</span>
+        <span class="name-accent">Zahid</span>
+      </h1>
+      <p class="hero-tagline">
+        <strong class="hero-role">Senior ASP.NET Developer</strong>
+        <span class="hero-speciality">specializing in Angular 20, .NET 8, SQL Server, and clean architecture.</span>
+      </p>
+      <p class="mono hero-type" aria-live="polite">{{ typed() }}<span class="caret">|</span></p>
+
+      <div class="hero-ctas">
+        <a class="btn btn-teal" [href]="profile.resumeUrl" download>
+          Download Resume <i class="fa-solid fa-download" aria-hidden="true"></i>
+        </a>
+        <button type="button" class="btn-ghost" (click)="contact()">Contact Me</button>
+        <button type="button" class="projects-orb" (click)="viewProjects()" aria-label="View projects">
+          <span class="projects-label">
+            <span>View</span>
+            <span>Projects</span>
+          </span>
+          <span class="projects-arrow" aria-hidden="true">
+            <i class="fa-solid fa-arrow-right"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="orbit-frame" aria-hidden="true">
+        <div class="portrait-orbit orbit-one"></div>
+        <div class="portrait-orbit orbit-two"></div>
+        <div class="portrait-orbit orbit-three"></div>
+      </div>
+
+      <img
+        class="hero-photo"
+        src="assets/adeel-hero-cutout.png"
+        width="864"
+        height="1152"
+        alt="Professional portrait of Adeel Zahid, Senior ASP.NET Developer"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+
+      <nav class="social-orbit" aria-label="Professional links">
+        <a class="social-button social-website" [href]="profile.portfolio" target="_blank" rel="noopener noreferrer" aria-label="Website">
+          <i class="fa-solid fa-globe" aria-hidden="true"></i>
+        </a>
+        <a class="social-button social-email" [href]="'mailto:' + profile.email" aria-label="Email">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+        </a>
+        <a class="social-button social-facebook" [href]="profile.facebook" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+        </a>
+        <a class="social-button social-twitter" [href]="profile.twitter" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">
+          <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+        </a>
+        <a class="social-button social-github" [href]="profile.github" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fa-brands fa-github" aria-hidden="true"></i>
+        </a>
+        <a class="social-button social-linkedin" [href]="profile.linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+      </nav>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+.back-to-top {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  z-index: 1100;
+  width: 48px;
+  height: 48px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent);
+  background: var(--color-elevated);
+  color: var(--color-accent);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 8px 28px var(--color-glow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  animation: fadeIn 0.25s ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: var(--color-accent);
+  color: #042f2e;
+  box-shadow: 0 12px 32px var(--color-glow);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

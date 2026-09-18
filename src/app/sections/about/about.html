@@ -1,0 +1,28 @@
+<section id="about" class="section about" aria-labelledby="about-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <p class="eyebrow">About</p>
+    <h2 id="about-heading" class="section-title">Shipping production systems at scale</h2>
+
+    <div class="row g-4 align-items-stretch about-layout">
+      <div class="col-12 col-md-7 about-copy">
+        <p class="section-lead">{{ summary }}</p>
+        <p class="section-lead">{{ knowledge }}</p>
+      </div>
+
+      <div class="col-12 col-md-5 about-aside">
+        <article class="card-surface about-card">
+          <h3>Recognition</h3>
+          <ul class="award-list">
+            @for (award of awards; track award.title) {
+              <li>
+                <strong>{{ award.title }}</strong>
+                <span>{{ award.org }} · {{ award.date }}</span>
+                <p>{{ award.detail }}</p>
+              </li>
+            }
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

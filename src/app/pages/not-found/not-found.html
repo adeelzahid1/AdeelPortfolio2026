@@ -1,0 +1,50 @@
+<section class="not-found" aria-labelledby="not-found-heading">
+  <div class="nf-boxes" aria-hidden="true"></div>
+  <div class="nf-glow" aria-hidden="true"></div>
+  <span class="nf-orb nf-orb-a" aria-hidden="true"></span>
+  <span class="nf-orb nf-orb-b" aria-hidden="true"></span>
+  <span class="nf-orb nf-orb-c" aria-hidden="true"></span>
+
+  <div class="container-narrow nf-inner">
+    <p class="eyebrow nf-kicker">
+      <span class="nf-pulse" aria-hidden="true"></span>
+      HTTP 404 · NOT_FOUND
+    </p>
+
+    <div class="nf-stage" aria-hidden="true">
+      <div class="nf-radar">
+        <span class="nf-ring"></span>
+        <span class="nf-ring nf-ring-late"></span>
+        <span class="nf-sweep"></span>
+      </div>
+
+      <p class="nf-digits">
+        <span class="digit" data-text="4">4</span>
+        <span class="digit digit-zero" data-text="0">
+          0
+          <span class="zero-orbit"></span>
+        </span>
+        <span class="digit digit-late" data-text="4">4</span>
+      </p>
+    </div>
+
+    <h1 id="not-found-heading" class="nf-title">This route doesn’t compile.</h1>
+    <p class="section-lead nf-copy">
+      The page you’re looking for isn’t in this solution — it may have moved, or never shipped.
+    </p>
+
+    <p class="nf-path mono" aria-label="Requested path">
+      <span class="nf-method">GET</span>
+      <span class="nf-url">{{ path }}</span>
+      <span class="nf-status">→ 404</span>
+    </p>
+
+    <div class="nf-actions">
+      <a class="btn btn-teal" routerLink="/">
+        <i class="fa-solid fa-house" aria-hidden="true"></i>
+        Back home
+      </a>
+      <a class="btn-ghost" routerLink="/projects">View projects</a>
+    </div>
+  </div>
+</section>

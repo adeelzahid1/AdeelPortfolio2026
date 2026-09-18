@@ -1,0 +1,62 @@
+<section id="focus" class="section current-focus" aria-labelledby="focus-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <p class="eyebrow">Now</p>
+    <h2 id="focus-heading" class="section-title">Current focus</h2>
+    <p class="section-lead">
+      What I’m building day-to-day at {{ focus.company }} — production logistics and commerce systems at scale.
+    </p>
+
+    <div class="row">
+      <div class="col-12">
+        <article class="card-surface focus-card">
+          <header class="focus-head">
+            <div>
+              <h3>{{ focus.role }}</h3>
+              <p class="focus-meta">
+                <a [href]="focus.companyUrl" target="_blank" rel="noopener noreferrer">{{ focus.company }}</a>
+                <span aria-hidden="true">·</span>
+                {{ focus.period }}
+              </p>
+              <p class="focus-location">{{ focus.location }}</p>
+            </div>
+          </header>
+
+          <p class="focus-summary">{{ focus.summary }}</p>
+
+          <ul class="focus-stats">
+            @for (stat of focus.stats; track stat.label) {
+              <li>
+                <strong>{{ stat.value }}</strong>
+                <span>{{ stat.label }}</span>
+              </li>
+            }
+          </ul>
+
+          <div class="focus-work">
+            @for (item of focus.work; track item.name) {
+              <div class="focus-work-item">
+                <h4>{{ item.name }}</h4>
+                <p>{{ item.summary }}</p>
+                @if (item.url) {
+                  <a [href]="item.url" target="_blank" rel="noopener noreferrer">Visit site →</a>
+                }
+              </div>
+            }
+          </div>
+
+          <ul class="focus-highlights">
+            @for (item of focus.highlights; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+
+          <div class="focus-stack">
+            @for (tech of focus.stack; track tech) {
+              <span class="tech-tag">{{ tech }}</span>
+            }
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>

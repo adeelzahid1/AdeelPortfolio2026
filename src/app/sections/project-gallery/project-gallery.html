@@ -1,0 +1,40 @@
+<section id="projects" class="section project-gallery" aria-labelledby="projects-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <p class="eyebrow">All projects</p>
+    <h2 id="projects-heading" class="section-title">Work I’ve shipped</h2>
+    <p class="section-lead">
+      Every product I’ve built or contributed to — from logistics platforms to mobile apps.
+    </p>
+
+    <div class="catalog-grid">
+      @for (project of projects; track project.name) {
+        <a
+          class="catalog-card card-surface"
+          [href]="project.url || null"
+          [attr.target]="project.url ? '_blank' : null"
+          [attr.rel]="project.url ? 'noopener noreferrer' : null"
+          [attr.aria-label]="project.name"
+        >
+          <div class="catalog-logo" [class.has-image]="!!project.logo && !failedLogos.has(project.name)">
+            @if (project.logo && !failedLogos.has(project.name)) {
+              <img
+                [src]="project.logo"
+                [alt]="project.name + ' logo'"
+                loading="lazy"
+                decoding="async"
+                (error)="onLogoError(project.name)"
+              />
+            } @else {
+              <span class="logo-fallback" aria-hidden="true">{{ initials(project) }}</span>
+            }
+          </div>
+          <div class="catalog-copy">
+            <h3>{{ project.name }}</h3>
+            <p class="catalog-meta">{{ project.company }} · {{ project.year }}</p>
+            <p class="catalog-stack mono">{{ project.stack }}</p>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
