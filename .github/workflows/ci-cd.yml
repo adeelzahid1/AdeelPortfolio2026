@@ -5,20 +5,21 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
@@ -29,32 +30,38 @@ jobs:
       - name: Production build
         run: npm run build
 
-      - name: Surge SPA fallback
+      - name: Prepare Surge folder
         run: |
           SITE=dist/adeelzahid-portfolio/browser
-          test -f "$SITE/index.html"
+          if [ ! -f "$SITE/index.html" ]; then
+            echo "Missing $SITE/index.html — Angular output path changed?"
+            find dist -maxdepth 5 -type f | head -80
+            exit 1
+          fi
           cp "$SITE/index.html" "$SITE/200.html"
+          printf 'adeelzahid.surge.sh\n' > "$SITE/CNAME"
+          echo "Publishing folder:"
+          pwd
           ls -la "$SITE"
 
-      - name: Upload dist
-        uses: actions/upload-artifact@v5
-        with:
-          name: dist
-          path: dist/adeelzahid-portfolio/browser
-          retention-days: 7
-
       - name: Deploy to Surge
-        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        if: github.event_name != 'pull_request'
         env:
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
           if [ -z "$SURGE_TOKEN" ]; then
             echo "Add repo secret SURGE_TOKEN (Settings → Secrets and variables → Actions)."
-            echo "Create a token locally with: npx surge token"
+            echo "Create it while logged in as m.adeel2144@gmail.com: npx surge token"
             exit 1
           fi
           SITE=dist/adeelzahid-portfolio/browser
-          test -f "$SITE/index.html"
-          npm install --global surge
-          surge "$SITE" adeelzahid.surge.sh --token "$SURGE_TOKEN"
+          npx --yes surge --project "$SITE" --domain adeelzahid.surge.sh --token "$SURGE_TOKEN"
+
+      - name: Upload dist
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/adeelzahid-portfolio/browser
+          retention-days: 7
