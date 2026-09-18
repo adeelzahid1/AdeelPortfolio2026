@@ -52,6 +52,7 @@ jobs:
 
       - name: Deploy to Surge
         env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
           if [ -z "$SURGE_TOKEN" ]; then
@@ -59,4 +60,6 @@ jobs:
             echo "Create a token locally with: npx surge token"
             exit 1
           fi
-          npx surge ./dist adeelzahid.surge.sh --token "$SURGE_TOKEN"
+          ls -la ./dist
+          npm install --global surge
+          surge ./dist adeelzahid.surge.sh --token "$SURGE_TOKEN"
