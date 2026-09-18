@@ -32,15 +32,14 @@ Workflow: `.github/workflows/ci-cd.yml`
 - Pull requests and pushes: production build
 - Push to `main` / `master`: deploy `dist/adeelzahid-portfolio/browser` to [adeelzahid.surge.sh](https://adeelzahid.surge.sh)
 
-### Secret (required for deploy)
+### Secrets (already in GitHub)
 
-GitHub repo → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
+Repo → **Settings** → **Secrets and variables** → **Actions**
 
 | Name | Value |
 |---|---|
+| `SURGE_LOGIN` | Surge account email |
 | `SURGE_TOKEN` | output of `npx surge token` |
-
-Do not commit this token. After the secret is saved, push to `main` to trigger deploy.
 
 ## Notes
 

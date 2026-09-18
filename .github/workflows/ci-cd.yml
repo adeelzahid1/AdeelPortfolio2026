@@ -40,22 +40,17 @@ jobs:
           fi
           cp "$SITE/index.html" "$SITE/200.html"
           printf 'adeelzahid.surge.sh\n' > "$SITE/CNAME"
-          echo "Publishing folder:"
-          pwd
           ls -la "$SITE"
 
       - name: Deploy to Surge
         if: github.event_name != 'pull_request'
+        working-directory: dist/adeelzahid-portfolio/browser
         env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
         run: |
-          if [ -z "$SURGE_TOKEN" ]; then
-            echo "Add repo secret SURGE_TOKEN (Settings → Secrets and variables → Actions)."
-            echo "Create it while logged in as m.adeel2144@gmail.com: npx surge token"
-            exit 1
-          fi
-          SITE=dist/adeelzahid-portfolio/browser
-          npx --yes surge --project "$SITE" --domain adeelzahid.surge.sh --token "$SURGE_TOKEN"
+          test -f index.html
+          npx --yes surge ./ adeelzahid.surge.sh --token "$SURGE_TOKEN"
 
       - name: Upload dist
         if: always()
