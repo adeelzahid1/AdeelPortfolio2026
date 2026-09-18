@@ -30,7 +30,7 @@ npx surge dist/adeelzahid-portfolio/browser adeelzahid.surge.sh
 Workflow: `.github/workflows/ci-cd.yml`
 
 - Pull requests and pushes: production build
-- Push to `main` / `master`: deploy to [adeelzahid.surge.sh](https://adeelzahid.surge.sh)
+- Push to `main` / `master`: deploy `dist/adeelzahid-portfolio/browser` to [adeelzahid.surge.sh](https://adeelzahid.surge.sh)
 
 ### Secret (required for deploy)
 
