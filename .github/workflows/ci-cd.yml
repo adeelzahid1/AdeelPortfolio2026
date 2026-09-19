@@ -1,62 +1,36 @@
-name: CI / Deploy
+name: Build and Deploy to Surge
 
 on:
   push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
-  workflow_dispatch:
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
+    branches:
+      - main
+      - master
 
 jobs:
   build-and-deploy:
+    name: Build & Deploy
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: npm
+          node-version: '22'
+          cache: 'npm'
 
-      - name: Install
+      - name: Install dependencies
         run: npm ci
 
-      - name: Production build
+      - name: Build Angular app (Production)
         run: npm run build
 
-      - name: Prepare Surge folder
-        run: |
-          SITE=dist/adeelzahid-portfolio/browser
-          if [ ! -f "$SITE/index.html" ]; then
-            echo "Missing $SITE/index.html — Angular output path changed?"
-            find dist -maxdepth 5 -type f | head -80
-            exit 1
-          fi
-          cp "$SITE/index.html" "$SITE/200.html"
-          printf 'adeelzahid.surge.sh\n' > "$SITE/CNAME"
-          ls -la "$SITE"
+      - name: Copy index.html to 200.html (for client-side routing)
+        run: cp dist/adeelzahid-portfolio/browser/index.html dist/adeelzahid-portfolio/browser/200.html
 
       - name: Deploy to Surge
-        if: github.event_name != 'pull_request'
+        run: npx surge dist/adeelzahid-portfolio/browser adeelzahid.surge.sh --token ${{ secrets.SURGE_TOKEN }}
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-        run: |
-          test -f dist/adeelzahid-portfolio/browser/index.html
-          npm install -g surge
-          surge dist/adeelzahid-portfolio/browser adeelzahid.surge.sh --token "$SURGE_TOKEN"
-
-      - name: Upload dist
-        if: always()
-        continue-on-error: true
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist/adeelzahid-portfolio/browser
-          retention-days: 7
