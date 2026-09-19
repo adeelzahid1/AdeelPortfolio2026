@@ -31,6 +31,6 @@ jobs:
         run: cp dist/adeelzahid-portfolio/browser/index.html dist/adeelzahid-portfolio/browser/200.html
 
       - name: Deploy to Surge
-        run: npx surge dist/adeelzahid-portfolio/browser adeelzahid.surge.sh --token ${{ secrets.SURGE_TOKEN }}
+        run: npx surge dist/adeelzahid-portfolio/browser adeelzahid-portfolio.surge.sh --token ${{ secrets.SURGE_TOKEN }}
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}

@@ -96,7 +96,7 @@ export const PROFILE: Profile = {
   email: 'developer.adeelzahid@gmail.com',
   phone: '+923157011812',
   phoneDisplay: '+92 315 7011812',
-  portfolio: 'https://adeelzahid.surge.sh',
+  portfolio: 'https://adeelzahid-portfolio.surge.sh',
   linkedin: 'https://linkedin.com/in/adeelzahid1',
   github: 'https://github.com/adeelzahid1',
   twitter: 'https://www.twitter.com/adeelzahid1',

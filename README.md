@@ -22,7 +22,7 @@ Output: `dist/adeelzahid-portfolio/browser`
 ## Deploy to Surge
 
 ```bash
-npx surge dist/adeelzahid-portfolio/browser adeelzahid.surge.sh
+npx surge dist/adeelzahid-portfolio/browser adeelzahid-portfolio.surge.sh
 ```
 
 ## GitHub Actions CI/CD
@@ -30,7 +30,7 @@ npx surge dist/adeelzahid-portfolio/browser adeelzahid.surge.sh
 Workflow: `.github/workflows/ci-cd.yml`
 
 - Pull requests and pushes: production build
-- Push to `main` / `master`: deploy `dist/adeelzahid-portfolio/browser` to [adeelzahid.surge.sh](https://adeelzahid.surge.sh)
+- Push to `main` / `master`: deploy `dist/adeelzahid-portfolio/browser` to [adeelzahid-portfolio.surge.sh](https://adeelzahid-portfolio.surge.sh)
 
 ### Secrets (already in GitHub)
 
