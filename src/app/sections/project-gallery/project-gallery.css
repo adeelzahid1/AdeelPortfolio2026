@@ -1,7 +1,43 @@
+.catalog-title {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.catalog-stage {
+  position: relative;
+}
+
 .catalog-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.catalog-marquee {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  gap: 1rem;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+}
+
+.catalog-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  padding: 0.35rem 0;
+  animation: catalogScrollLtr 20s linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.catalog-track-rtl {
+  animation-name: catalogScrollRtl;
 }
 
 .catalog-card {
@@ -12,6 +48,10 @@
   padding: 1.05rem 1.15rem;
   color: inherit;
   min-height: 0;
+}
+
+.catalog-track .catalog-card {
+  flex: 0 0 16.5rem;
 }
 
 .catalog-card:hover {
@@ -37,6 +77,11 @@
   flex-shrink: 0;
 }
 
+.catalog-track .catalog-logo {
+  width: 3.6rem;
+  height: 3.6rem;
+}
+
 .catalog-logo.has-image {
   background: #fff;
 }
@@ -46,6 +91,10 @@
   height: 100%;
   object-fit: contain;
   padding: 0.4rem;
+}
+
+.catalog-track .catalog-logo img {
+  padding: 0.35rem;
 }
 
 .logo-fallback {
@@ -85,6 +134,39 @@
   line-height: 1.45;
 }
 
+@keyframes catalogScrollLtr {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes catalogScrollRtl {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (hover: hover) {
+  .project-gallery:has(.catalog-title:hover) .catalog-grid {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .project-gallery:has(.catalog-title:hover) .catalog-marquee {
+    visibility: visible;
+  }
+
+  .project-gallery:has(.catalog-title:hover) .catalog-track {
+    animation-play-state: running;
+  }
+}
+
 @media (min-width: 900px) {
   .catalog-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -115,5 +197,26 @@
 @media (min-width: 520px) and (max-width: 767.98px) {
   .catalog-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .catalog-track .catalog-card {
+    flex-basis: 14.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .catalog-marquee {
+    display: none;
+  }
+
+  .catalog-track {
+    animation: none;
+  }
+
+  .project-gallery:has(.catalog-title:hover) .catalog-grid {
+    visibility: visible;
+    pointer-events: auto;
   }
 }

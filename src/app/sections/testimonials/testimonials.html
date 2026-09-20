@@ -1,0 +1,27 @@
+<section id="testimonials" class="section testimonials-section" aria-labelledby="testimonials-heading">
+  <div class="container-narrow" appRevealOnScroll>
+    <p class="eyebrow">Testimonials</p>
+    <h2 id="testimonials-heading" class="section-title">What leaders say</h2>
+    <p class="section-lead">
+      Feedback from CEOs and CTOs I’ve worked with on logistics, HR/ERP, and learning platforms —
+      focused on delivery, ownership, and technical depth.
+    </p>
+
+    <div class="testimonials">
+      @for (t of testimonials; track t.name) {
+        <blockquote class="card-surface quote">
+          <p>“{{ t.quote }}”</p>
+          <footer>
+            <div class="quote-logo" [class.is-dark]="t.logoDark">
+              <img [src]="t.logo" [alt]="t.role + ' logo'" width="48" height="48" />
+            </div>
+            <div>
+              <strong>{{ t.name }}</strong>
+              <span>{{ t.role }}</span>
+            </div>
+          </footer>
+        </blockquote>
+      }
+    </div>
+  </div>
+</section>

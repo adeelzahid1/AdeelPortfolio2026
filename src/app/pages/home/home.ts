@@ -17,6 +17,7 @@ import { EducationComponent } from '../../sections/education/education';
 import { LanguagesComponent } from '../../sections/languages/languages';
 import { ServicesComponent } from '../../sections/services/services';
 import { MoreComponent } from '../../sections/more/more';
+import { TestimonialsComponent } from '../../sections/testimonials/testimonials';
 import { ContactComponent } from '../../sections/contact/contact';
 import { ScrollSpyService } from '../../core/services/scroll-spy.service';
 
@@ -34,6 +35,7 @@ import { ScrollSpyService } from '../../core/services/scroll-spy.service';
     LanguagesComponent,
     ServicesComponent,
     MoreComponent,
+    TestimonialsComponent,
     ContactComponent,
   ],
   templateUrl: './home.html',

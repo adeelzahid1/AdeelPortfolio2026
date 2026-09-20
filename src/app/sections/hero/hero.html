@@ -28,16 +28,18 @@
         <a class="btn btn-teal" [href]="profile.resumeUrl" download>
           Download Resume <i class="fa-solid fa-download" aria-hidden="true"></i>
         </a>
-        <button type="button" class="btn-ghost" (click)="contact()">Contact Me</button>
-        <button type="button" class="projects-orb" (click)="viewProjects()" aria-label="View projects">
-          <span class="projects-label">
-            <span>View</span>
-            <span>Projects</span>
-          </span>
-          <span class="projects-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right"></i>
-          </span>
-        </button>
+        <div class="hero-cta-pair">
+          <button type="button" class="btn-ghost" (click)="contact()">Contact Me</button>
+          <button type="button" class="projects-orb" (click)="viewProjects()" aria-label="View projects">
+            <span class="projects-label">
+              <span>View</span>
+              <span>Projects</span>
+            </span>
+            <span class="projects-arrow" aria-hidden="true">
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
 

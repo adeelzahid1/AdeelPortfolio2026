@@ -1,3 +1,7 @@
+:host {
+  display: block;
+}
+
 .skill-grid {
   list-style: none;
   padding: 0;
@@ -5,18 +9,56 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem;
+  touch-action: none;
 }
 
 .skill-badge {
+  position: relative;
   padding: 1rem 1.05rem;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  cursor: grab;
+  user-select: none;
   transform-style: preserve-3d;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 }
 
 .skill-badge:hover {
   transform: translateY(-4px) rotateX(2deg) rotateY(-2deg);
+}
+
+.skill-badge.is-dragging {
+  cursor: grabbing;
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-elevated));
+  border-style: dashed;
+  border-color: var(--color-accent);
+  box-shadow: none;
+  transform: none;
+}
+
+.skill-badge.is-dragging .skill-name,
+.skill-badge.is-dragging .skill-cat {
+  visibility: hidden;
+}
+
+.skill-badge.is-over {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 16%, var(--color-elevated));
+  box-shadow: inset 4px 0 0 var(--color-accent), 0 12px 32px var(--color-glow);
+  transform: translateY(-4px) scale(1.02);
+}
+
+.drop-hint {
+  position: absolute;
+  right: 0.7rem;
+  top: 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-weight: 700;
 }
 
 .skill-name {
@@ -29,6 +71,23 @@
   color: var(--color-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.skill-ghost {
+  position: fixed;
+  z-index: 4000;
+  pointer-events: none;
+  padding: 1rem 1.05rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border-color: var(--color-accent);
+  box-shadow: 0 18px 44px var(--color-glow);
+  transform: rotate(3deg) scale(1.04);
+}
+
+:host-context(body.skill-dragging) {
+  cursor: grabbing;
 }
 
 @media (min-width: 768px) {
@@ -52,5 +111,15 @@
 @media (min-width: 1680px) {
   .skill-grid {
     grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-badge,
+  .skill-badge:hover,
+  .skill-badge.is-over,
+  .skill-ghost {
+    transition: none;
+    transform: none;
   }
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RevealOnScrollDirective } from '../../shared/directives/reveal-on-scroll.directive';
-import { EDUCATION, PROFILE, TESTIMONIALS } from '../../data/portfolio.data';
+import { EDUCATION, PROFILE } from '../../data/portfolio.data';
 
 @Component({
   selector: 'app-contact',
@@ -14,7 +14,6 @@ import { EDUCATION, PROFILE, TESTIMONIALS } from '../../data/portfolio.data';
 export class ContactComponent {
   readonly profile = PROFILE;
   readonly education = EDUCATION;
-  readonly testimonials = TESTIMONIALS;
   readonly name = signal('');
   readonly message = signal('');
 

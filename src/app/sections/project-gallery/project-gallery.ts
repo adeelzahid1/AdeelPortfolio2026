@@ -1,3 +1,4 @@
+import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RevealOnScrollDirective } from '../../shared/directives/reveal-on-scroll.directive';
 import { ALL_PROJECTS, CatalogProject, logoForProject } from '../../data/portfolio.data';
@@ -5,18 +6,28 @@ import { ALL_PROJECTS, CatalogProject, logoForProject } from '../../data/portfol
 @Component({
   selector: 'app-project-gallery',
   standalone: true,
-  imports: [RevealOnScrollDirective],
+  imports: [NgTemplateOutlet, RevealOnScrollDirective],
   templateUrl: './project-gallery.html',
   styleUrl: './project-gallery.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectGalleryComponent {
-  readonly projects: CatalogProject[] = ALL_PROJECTS.map((project) => ({
-    ...project,
-    logo: logoForProject(project),
-  }));
-
+  readonly projects: CatalogProject[];
+  readonly rowA: CatalogProject[];
+  readonly rowB: CatalogProject[];
   readonly failedLogos = new Set<string>();
+
+  constructor() {
+    this.projects = ALL_PROJECTS.map((project) => ({
+      ...project,
+      logo: logoForProject(project),
+    }));
+    const mid = Math.ceil(this.projects.length / 2);
+    const a = this.projects.slice(0, mid);
+    const b = this.projects.slice(mid);
+    this.rowA = [...a, ...a];
+    this.rowB = [...b, ...b];
+  }
 
   initials(project: CatalogProject): string {
     return project.name
