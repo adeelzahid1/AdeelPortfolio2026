@@ -38,8 +38,8 @@
 }
 
 .interest-slider {
-  --interest-gap: 1rem;
-  --interest-visible: 1.15;
+  --interest-gap: 0.85rem;
+  --interest-visible: 1;
   position: relative;
   display: flex;
   gap: var(--interest-gap);
@@ -47,12 +47,10 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: none;
-  padding: 1.1rem 0 1.25rem;
+  padding: 0.85rem 0.2rem 1.1rem;
   cursor: grab;
   user-select: none;
   touch-action: pan-y;
-  mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
 }
 
 .interest-slider.is-dragging {
@@ -68,11 +66,11 @@
 .interest-slide {
   flex: 0 0 calc((100% - (var(--interest-visible) - 1) * var(--interest-gap)) / var(--interest-visible));
   scroll-snap-align: start;
-  padding: 1.35rem 1.4rem;
-  min-height: 15.5rem;
-  transform: scale(0.94);
-  opacity: 0.72;
-  filter: blur(1px);
+  padding: 1.1rem 1.15rem;
+  min-height: 12.5rem;
+  transform: scale(0.98);
+  opacity: 0.88;
+  filter: none;
   transform-origin: center center;
   transition:
     filter 0.35s ease,
@@ -84,27 +82,26 @@
 
 .interest-slide.is-edge-left,
 .interest-slide.is-edge-right {
-  filter: blur(1.1px);
-  opacity: 0.72;
-  transform: scale(0.94);
+  filter: none;
+  opacity: 0.8;
+  transform: scale(0.97);
 }
 
 .interest-slide.is-focus {
-  filter: blur(0);
+  filter: none;
   opacity: 1;
-  transform: scale(1.02);
+  transform: scale(1);
   z-index: 1;
 }
 
 .interest-slide.is-focus.card-surface:hover {
-  transform: translateY(-6px) scale(1.03);
+  transform: translateY(-4px) scale(1.015);
 }
 
 .interest-slide.is-edge-left.card-surface:hover,
 .interest-slide.is-edge-right.card-surface:hover {
-  transform: scale(0.96);
-  filter: blur(0.6px);
-  opacity: 0.85;
+  transform: scale(0.99);
+  opacity: 0.92;
 }
 
 .interest-icon {
@@ -172,16 +169,17 @@
 
 @media (min-width: 768px) {
   .interest-slider {
-    --interest-visible: 2.2;
+    --interest-visible: 2;
   }
 }
 
 @media (min-width: 1100px) {
   .interest-slider {
-    --interest-visible: 4;
+    --interest-visible: 3;
   }
 
   .interest-slide {
-    min-height: 16.5rem;
+    min-height: 13.25rem;
+    padding: 1.05rem 1.1rem;
   }
 }

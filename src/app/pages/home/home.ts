@@ -52,13 +52,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     const ids = [
       'hero',
       'about',
+      'focus',
       'tech',
       'projects',
       'work',
+      'experience',
       'education',
       'languages',
       'services',
       'interests',
+      'testimonials',
       'contact',
     ];
     this.observer = new IntersectionObserver(

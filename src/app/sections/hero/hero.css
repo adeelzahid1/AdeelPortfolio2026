@@ -103,6 +103,7 @@
 }
 
 .hero-name {
+  --shine-x: -20%;
   display: flex;
   flex-wrap: nowrap;
   align-items: baseline;
@@ -114,24 +115,46 @@
   line-height: 0.96;
   margin: 0 0 1.7rem;
   color: var(--color-text);
+  cursor: default;
 }
 
+.name-word,
 .name-accent {
+  display: inline-block;
   position: relative;
   color: var(--color-text);
+  background-image: linear-gradient(
+    90deg,
+    var(--color-text) 0%,
+    var(--color-text) calc(var(--shine-x) - 14%),
+    var(--color-accent-bright) var(--shine-x),
+    var(--color-text) calc(var(--shine-x) + 14%),
+    var(--color-text) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .name-accent::after {
   content: '';
   position: absolute;
-  left: 52%;
-  bottom: -0.4rem;
-  width: 54%;
-  height: 0.5rem;
-  transform: translateX(-50%) rotate(-3deg);
-  border-top: 3px solid var(--color-accent);
+  left: 50%;
+  bottom: -0.55rem;
+  width: 82%;
+  height: 0.75rem;
+  transform: translateX(-50%) rotate(-3deg) scale(1);
+  transform-origin: center;
+  border-top: 4px solid var(--color-accent);
   border-radius: 50%;
-  opacity: 0.8;
+  opacity: 0.9;
+  transition: transform 0.35s ease, opacity 0.3s ease, filter 0.3s ease;
+}
+
+.hero-name:hover .name-accent::after {
+  transform: translateX(-50%) rotate(-3deg) scale(1.18, 1.35);
+  opacity: 1;
+  filter: drop-shadow(0 4px 8px var(--color-glow));
 }
 
 .hero-tagline {
@@ -327,10 +350,6 @@
 
 .social-button:hover,
 .social-button:focus-visible {
-  border-color: var(--color-accent);
-  background: var(--color-accent);
-  color: #042f2e;
-  box-shadow: 0 0 24px var(--color-glow);
   transform: rotate(var(--a)) translate(var(--icon-r)) rotate(calc(-1 * var(--a))) scale(1.1);
 }
 
@@ -340,6 +359,54 @@
 .social-twitter { --a: 8deg; }
 .social-github { --a: 34deg; }
 .social-linkedin { --a: 60deg; }
+
+.social-github:hover,
+.social-github:focus-visible {
+  background: #181717;
+  border-color: #181717;
+  color: #fff;
+  box-shadow: 0 0 22px rgba(24, 23, 23, 0.45);
+}
+
+.social-linkedin:hover,
+.social-linkedin:focus-visible {
+  background: #0a66c2;
+  border-color: #0a66c2;
+  color: #fff;
+  box-shadow: 0 0 22px rgba(10, 102, 194, 0.45);
+}
+
+.social-twitter:hover,
+.social-twitter:focus-visible {
+  background: #000;
+  border-color: #000;
+  color: #fff;
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.4);
+}
+
+.social-facebook:hover,
+.social-facebook:focus-visible {
+  background: #1877f2;
+  border-color: #1877f2;
+  color: #fff;
+  box-shadow: 0 0 22px rgba(24, 119, 242, 0.45);
+}
+
+.social-email:hover,
+.social-email:focus-visible {
+  background: #ea4335;
+  border-color: #ea4335;
+  color: #fff;
+  box-shadow: 0 0 22px rgba(234, 67, 53, 0.45);
+}
+
+.social-website:hover,
+.social-website:focus-visible {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+  box-shadow: 0 0 22px rgba(37, 99, 235, 0.45);
+}
 
 @media (min-width: 768px) {
   .hero-layout {
@@ -461,6 +528,23 @@
   .caret,
   .wave {
     animation: none;
+  }
+
+  .name-word,
+  .name-accent,
+  .name-accent::after {
+    transition: none;
+    background: none;
+    -webkit-text-fill-color: var(--color-text);
+    transform: none;
+    filter: none;
+  }
+
+  .name-accent::after {
+    transform: translateX(-50%) rotate(-3deg) scale(1);
+    opacity: 0.9;
+    filter: none;
+    transition: none;
   }
 }
 

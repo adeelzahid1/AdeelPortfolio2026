@@ -37,8 +37,47 @@
 
 .footer-links a:hover,
 .footer-links a:focus-visible {
-  color: #042f2e;
-  border-color: var(--color-accent);
-  background: var(--color-accent);
-  box-shadow: 0 0 18px var(--color-glow);
+  color: #fff;
+}
+
+.footer-links .social-github:hover,
+.footer-links .social-github:focus-visible {
+  background: #181717;
+  border-color: #181717;
+  box-shadow: 0 0 18px rgba(24, 23, 23, 0.45);
+}
+
+.footer-links .social-linkedin:hover,
+.footer-links .social-linkedin:focus-visible {
+  background: #0a66c2;
+  border-color: #0a66c2;
+  box-shadow: 0 0 18px rgba(10, 102, 194, 0.45);
+}
+
+.footer-links .social-twitter:hover,
+.footer-links .social-twitter:focus-visible {
+  background: #000;
+  border-color: #000;
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.4);
+}
+
+.footer-links .social-facebook:hover,
+.footer-links .social-facebook:focus-visible {
+  background: #1877f2;
+  border-color: #1877f2;
+  box-shadow: 0 0 18px rgba(24, 119, 242, 0.45);
+}
+
+.footer-links .social-email:hover,
+.footer-links .social-email:focus-visible {
+  background: #ea4335;
+  border-color: #ea4335;
+  box-shadow: 0 0 18px rgba(234, 67, 53, 0.45);
+}
+
+.footer-links .social-website:hover,
+.footer-links .social-website:focus-visible {
+  background: #2563eb;
+  border-color: #2563eb;
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.45);
 }

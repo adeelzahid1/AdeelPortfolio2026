@@ -9,8 +9,13 @@
         Hello! I’m
         <span class="wave" role="img" aria-label="waving hand">👋</span>
       </p>
-      <h1 id="hero-heading" class="heading-brand hero-name">
-        <span>Adeel</span>
+      <h1
+        id="hero-heading"
+        class="heading-brand hero-name"
+        (mousemove)="onNameMove($event)"
+        (mouseleave)="onNameLeave($event)"
+      >
+        <span class="name-word">Adeel</span>
         <span class="name-accent">Zahid</span>
       </h1>
       <p class="hero-tagline">

@@ -49,4 +49,18 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   viewProjects(): void {
     void this.router.navigate(['/projects']);
   }
+
+  onNameMove(event: MouseEvent): void {
+    const el = event.currentTarget as HTMLElement;
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 0) {
+      return;
+    }
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    el.style.setProperty('--shine-x', `${x}%`);
+  }
+
+  onNameLeave(event: MouseEvent): void {
+    (event.currentTarget as HTMLElement).style.setProperty('--shine-x', '-20%');
+  }
 }

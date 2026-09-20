@@ -15,22 +15,25 @@
           [attr.rel]="project.url ? 'noopener noreferrer' : null"
           [attr.aria-label]="project.name"
         >
-          <div class="catalog-logo" [class.has-image]="!!project.logo && !failedLogos.has(project.name)">
-            @if (project.logo && !failedLogos.has(project.name)) {
-              <img
-                [src]="project.logo"
-                [alt]="project.name + ' logo'"
-                loading="lazy"
-                decoding="async"
-                (error)="onLogoError(project.name)"
-              />
-            } @else {
-              <span class="logo-fallback" aria-hidden="true">{{ initials(project) }}</span>
-            }
+          <div class="catalog-head">
+            <div class="catalog-logo" [class.has-image]="!!project.logo && !failedLogos.has(project.name)">
+              @if (project.logo && !failedLogos.has(project.name)) {
+                <img
+                  [src]="project.logo"
+                  [alt]="project.name + ' logo'"
+                  loading="lazy"
+                  decoding="async"
+                  (error)="onLogoError(project.name)"
+                />
+              } @else {
+                <span class="logo-fallback" aria-hidden="true">{{ initials(project) }}</span>
+              }
+            </div>
+            <p class="catalog-company">{{ project.company }}</p>
           </div>
           <div class="catalog-copy">
             <h3>{{ project.name }}</h3>
-            <p class="catalog-meta">{{ project.company }} · {{ project.year }}</p>
+            <p class="catalog-meta">{{ project.year }}</p>
             <p class="catalog-stack mono">{{ project.stack }}</p>
           </div>
         </a>

@@ -29,10 +29,13 @@ export class NavbarComponent implements OnInit {
   readonly links = [
     { id: 'hero', label: 'Home' },
     { id: 'about', label: 'About' },
+    { id: 'focus', label: 'Focus' },
     { id: 'tech', label: 'Stack' },
     { id: 'projects', label: 'Projects' },
     { id: 'work', label: 'Work' },
+    { id: 'experience', label: 'Experience' },
     { id: 'education', label: 'Education' },
+    { id: 'testimonials', label: 'Testimonials' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -69,5 +72,19 @@ export class NavbarComponent implements OnInit {
 
   toggleTheme(): void {
     this.theme.toggle();
+  }
+
+  onBrandMove(event: MouseEvent): void {
+    const el = event.currentTarget as HTMLElement;
+    const rect = el.getBoundingClientRect();
+    if (rect.width <= 0) {
+      return;
+    }
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    el.style.setProperty('--shine-x', `${x}%`);
+  }
+
+  onBrandLeave(event: MouseEvent): void {
+    (event.currentTarget as HTMLElement).style.removeProperty('--shine-x');
   }
 }

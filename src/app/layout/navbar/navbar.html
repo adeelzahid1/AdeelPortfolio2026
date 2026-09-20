@@ -1,6 +1,13 @@
 <header class="nav-shell" [class.is-scrolled]="scrolled()">
   <div class="container-narrow nav-inner">
-    <a class="brand" href="#hero" (click)="go('hero'); $event.preventDefault()" [attr.aria-label]="profile.name">
+    <a
+      class="brand"
+      href="#hero"
+      (click)="go('hero'); $event.preventDefault()"
+      (mousemove)="onBrandMove($event)"
+      (mouseleave)="onBrandLeave($event)"
+      [attr.aria-label]="profile.name"
+    >
       <span class="brand-tag" aria-hidden="true">&lt;</span>
       <span class="brand-script">Adeel Zahid</span>
       <span class="brand-tag" aria-hidden="true">/&gt;</span>
