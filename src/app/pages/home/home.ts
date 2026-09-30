@@ -19,6 +19,7 @@ import { ServicesComponent } from '../../sections/services/services';
 import { MoreComponent } from '../../sections/more/more';
 import { TestimonialsComponent } from '../../sections/testimonials/testimonials';
 import { ContactComponent } from '../../sections/contact/contact';
+import { FloatingCirclesComponent } from '../../shared/ui/floating-circles/floating-circles';
 import { ScrollSpyService } from '../../core/services/scroll-spy.service';
 
 @Component({
@@ -26,6 +27,7 @@ import { ScrollSpyService } from '../../core/services/scroll-spy.service';
   standalone: true,
   imports: [
     HeroComponent,
+    FloatingCirclesComponent,
     AboutComponent,
     CurrentFocusComponent,
     TechStackComponent,

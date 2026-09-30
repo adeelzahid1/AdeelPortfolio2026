@@ -78,6 +78,12 @@ img {
   position: relative;
 }
 
+/* Stacks section content above FloatingCirclesComponent (z-index:0) */
+.content-layer {
+  position: relative;
+  z-index: 1;
+}
+
 .section-title {
   font-size: clamp(2.2rem, 5.2vw, 3.15rem);
   font-weight: 700;

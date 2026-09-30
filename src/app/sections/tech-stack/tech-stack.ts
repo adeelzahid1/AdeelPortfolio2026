@@ -17,6 +17,8 @@ export class TechStackComponent {
   readonly ghost = signal<{
     name: string;
     category: string;
+    logo: string;
+    mono?: boolean;
     x: number;
     y: number;
     w: number;
@@ -44,6 +46,8 @@ export class TechStackComponent {
     this.ghost.set({
       name: skill.name,
       category: skill.category,
+      logo: skill.logo,
+      mono: skill.mono,
       x: rect.left,
       y: rect.top,
       w: rect.width,

@@ -17,6 +17,8 @@ export interface Profile {
 export interface SkillItem {
   name: string;
   category: string;
+  logo: string;
+  mono?: boolean;
 }
 
 export interface ProjectCase {
@@ -170,28 +172,28 @@ export const CURRENT_FOCUS: CurrentFocus = {
 };
 
 export const SKILLS: SkillItem[] = [
-  { name: 'Angular 20', category: 'Frontend' },
-  { name: 'Angular 14/12', category: 'Frontend' },
-  { name: 'TypeScript', category: 'Frontend' },
-  { name: 'Bootstrap', category: 'Frontend' },
-  { name: '.NET 8', category: 'Backend' },
-  { name: 'ASP.NET Core', category: 'Backend' },
-  { name: 'C#', category: 'Languages' },
-  { name: 'SQL Server', category: 'Database' },
-  { name: 'Dapper', category: 'Database' },
-  { name: 'EF Core', category: 'Database' },
-  { name: 'Microservices', category: 'Architecture' },
-  { name: 'Hangfire', category: 'Backend' },
-  { name: 'Firebase', category: 'Cloud' },
-  { name: 'AWS S3', category: 'Cloud' },
-  { name: 'Azure', category: 'Cloud' },
-  { name: 'GitHub Actions', category: 'DevOps' },
-  { name: 'Crystal Reports', category: 'Reporting' },
-  { name: 'iTextSharp', category: 'Reporting' },
-  { name: 'xUnit', category: 'Quality' },
-  { name: 'SOLID / DI', category: 'Architecture' },
-  { name: 'Flutter', category: 'Mobile' },
-  { name: 'Cursor IDE', category: 'Tools' },
+  { name: 'Angular 20', category: 'Frontend', logo: 'skill-icons/angular.svg' },
+  { name: 'Angular 14/12', category: 'Frontend', logo: 'skill-icons/angular.svg' },
+  { name: 'TypeScript', category: 'Frontend', logo: 'skill-icons/typescript.svg' },
+  { name: 'Bootstrap', category: 'Frontend', logo: 'skill-icons/bootstrap.svg' },
+  { name: '.NET 8', category: 'Backend', logo: 'skill-icons/dotnet.svg' },
+  { name: 'ASP.NET Core', category: 'Backend', logo: 'skill-icons/dotnet.svg' },
+  { name: 'C#', category: 'Languages', logo: 'skill-icons/csharp.svg' },
+  { name: 'SQL Server', category: 'Database', logo: 'skill-icons/sqlserver.svg' },
+  { name: 'Dapper', category: 'Database', logo: 'skill-icons/dapper.svg' },
+  { name: 'EF Core', category: 'Database', logo: 'skill-icons/efcore.svg' },
+  { name: 'Microservices', category: 'Architecture', logo: 'skill-icons/microservices.svg' },
+  { name: 'Hangfire', category: 'Backend', logo: 'skill-icons/hangfire.svg' },
+  { name: 'Firebase', category: 'Cloud', logo: 'skill-icons/firebase.svg' },
+  { name: 'AWS S3', category: 'Cloud', logo: 'skill-icons/aws.svg' },
+  { name: 'Azure', category: 'Cloud', logo: 'skill-icons/azure.svg' },
+  { name: 'GitHub Actions', category: 'DevOps', logo: 'skill-icons/githubactions.svg' },
+  { name: 'Crystal Reports', category: 'Reporting', logo: 'skill-icons/crystal.svg' },
+  { name: 'iTextSharp', category: 'Reporting', logo: 'skill-icons/itext.svg' },
+  { name: 'xUnit', category: 'Quality', logo: 'skill-icons/xunit.svg' },
+  { name: 'SOLID / DI', category: 'Architecture', logo: 'skill-icons/solid.svg' },
+  { name: 'Flutter', category: 'Mobile', logo: 'skill-icons/flutter.svg' },
+  { name: 'Cursor IDE', category: 'Tools', logo: 'skill-icons/cursor.svg', mono: true },
 ];
 
 export const PROJECTS: ProjectCase[] = [

@@ -1,5 +1,5 @@
 <section id="tech" class="section" aria-labelledby="tech-heading">
-  <div class="container-narrow" appRevealOnScroll>
+  <div class="container-narrow content-layer" appRevealOnScroll>
     <p class="eyebrow">Tech stack</p>
     <h2 id="tech-heading" class="section-title">Tools I ship with</h2>
     <p class="section-lead">
@@ -16,7 +16,17 @@
           [attr.data-skill-index]="i"
           (pointerdown)="onPointerDown($event, i)"
         >
-          <span class="skill-name">{{ skill.name }}</span>
+          <span class="skill-main">
+            <img
+              class="skill-logo"
+              [class.is-mono]="skill.mono"
+              [src]="skill.logo"
+              alt=""
+              width="30"
+              height="30"
+            />
+            <span class="skill-name">{{ skill.name }}</span>
+          </span>
           <span class="skill-cat mono">{{ skill.category }}</span>
           @if (overIndex() === i && draggingIndex() !== i) {
             <span class="drop-hint">Drop here</span>
@@ -35,7 +45,10 @@
     [style.width.px]="g.w"
     aria-hidden="true"
   >
-    <span class="skill-name">{{ g.name }}</span>
+    <span class="skill-main">
+      <img class="skill-logo" [class.is-mono]="g.mono" [src]="g.logo" alt="" width="30" height="30" />
+      <span class="skill-name">{{ g.name }}</span>
+    </span>
     <span class="skill-cat mono">{{ g.category }}</span>
   </div>
 }

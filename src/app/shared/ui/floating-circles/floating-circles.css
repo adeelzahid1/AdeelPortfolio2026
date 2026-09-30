@@ -1,0 +1,52 @@
+/* ============================================================
+   FloatingCirclesComponent styles
+   Host = fixed full-viewport overlay at z-index: 0
+   All page content sits at z-index: 1 (.content-layer)
+   ============================================================ */
+
+:host {
+  display: block;
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+/* Smoothly fades out when Hero is in viewport */
+:host(.fc-hidden) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Individual particle circle */
+.fc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+  animation: fc-travel var(--dur) linear infinite;
+  animation-delay: var(--delay);
+}
+
+/* Continuous directional travel keyframe */
+@keyframes fc-travel {
+  from {
+    transform: translate3d(var(--x0), var(--y0), 0);
+  }
+  to {
+    transform: translate3d(var(--x1), var(--y1), 0);
+  }
+}
+
+/* Accessibility: stop animations if reduced motion requested */
+@media (prefers-reduced-motion: reduce) {
+  .fc {
+    animation: none !important;
+    display: none !important;
+  }
+}

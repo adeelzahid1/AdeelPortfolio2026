@@ -1,4 +1,6 @@
 .hero {
+  --spot-x: 50%;
+  --spot-y: 40%;
   min-height: calc(100svh - var(--nav-height));
   display: flex;
   align-items: stretch;
@@ -11,6 +13,7 @@
 }
 
 .hero-boxes {
+  --grid-line: var(--color-grid);
   position: absolute;
   inset: 0;
   z-index: 0;
@@ -18,20 +21,33 @@
   background-image:
     repeating-linear-gradient(
       to right,
-      var(--color-grid) 0,
-      var(--color-grid) 1px,
+      var(--grid-line) 0,
+      var(--grid-line) 1px,
       transparent 1px,
       transparent 20px
     ),
     repeating-linear-gradient(
       to bottom,
-      var(--color-grid) 0,
-      var(--color-grid) 1px,
+      var(--grid-line) 0,
+      var(--grid-line) 1px,
       transparent 1px,
       transparent 20px
     );
   mask-image: radial-gradient(ellipse at center, #000 42%, transparent 78%);
   -webkit-mask-image: radial-gradient(ellipse at center, #000 42%, transparent 78%);
+}
+
+.hero-boxes-spot {
+  --grid-line: color-mix(in srgb, var(--color-accent) 72%, transparent);
+  display: block;
+  opacity: 0;
+  mask-image: radial-gradient(circle at var(--spot-x) var(--spot-y), #000 0, transparent 11rem);
+  -webkit-mask-image: radial-gradient(circle at var(--spot-x) var(--spot-y), #000 0, transparent 11rem);
+  transition: opacity 0.35s ease;
+}
+
+.hero.is-spot .hero-boxes-spot {
+  opacity: 1;
 }
 
 .corner-arcs {
@@ -509,30 +525,41 @@
 
 @media (max-width: 767.98px) {
   .hero-ctas {
-    gap: 0.65rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
   }
 
   .hero-cta-pair {
-    gap: 0.55rem;
+    display: contents;
   }
 
   .hero-ctas .btn-teal,
   .hero-ctas .btn-ghost {
-    min-height: 38px;
-    padding: 0.42rem 0.9rem;
-    font-size: 0.82rem;
+    min-height: 34px;
+    padding: 0.32rem 0.58rem;
+    font-size: clamp(0.64rem, 2.7vw, 0.78rem);
+    line-height: 1.15;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  .hero-ctas .btn-teal {
+    gap: 0.28rem;
   }
 
   .projects-orb {
-    width: 4.55rem;
-    height: 4.55rem;
-    font-size: 0.6rem;
-    box-shadow: inset 0 0 0 0.24rem var(--color-bg);
+    width: clamp(2.9rem, 13.5vw, 3.55rem);
+    height: clamp(2.9rem, 13.5vw, 3.55rem);
+    font-size: clamp(0.48rem, 2.15vw, 0.56rem);
+    gap: 0.04rem;
+    box-shadow: inset 0 0 0 0.16rem var(--color-bg);
   }
 
   .projects-orb:hover,
   .projects-orb:focus-visible {
-    box-shadow: inset 0 0 0 0.24rem var(--color-bg), 0 10px 26px var(--color-glow);
+    box-shadow: inset 0 0 0 0.16rem var(--color-bg), 0 10px 26px var(--color-glow);
   }
 }
 
@@ -540,31 +567,38 @@
   .hero-name {
     font-size: 2.15rem;
   }
+}
 
+@media (max-width: 340px) {
   .hero-ctas {
-    flex-direction: column;
-    align-items: stretch;
+    gap: 0.28rem;
   }
 
-  .hero-ctas .btn-teal {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-  }
-
-  .hero-cta-pair {
-    width: 100%;
-    justify-content: flex-start;
+  .hero-ctas .btn-teal,
+  .hero-ctas .btn-ghost {
+    min-height: 32px;
+    padding: 0.26rem 0.4rem;
+    font-size: 0.62rem;
   }
 
   .projects-orb {
-    width: 4.2rem;
-    height: 4.2rem;
-    font-size: 0.56rem;
+    width: 2.6rem;
+    height: 2.6rem;
+    font-size: 0.46rem;
+    box-shadow: inset 0 0 0 0.12rem var(--color-bg);
+  }
+
+  .projects-orb:hover,
+  .projects-orb:focus-visible {
+    box-shadow: inset 0 0 0 0.12rem var(--color-bg), 0 10px 26px var(--color-glow);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-boxes-spot {
+    display: none;
+  }
+
   .hero-content,
   .hero-visual,
   .caret,

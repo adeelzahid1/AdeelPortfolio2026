@@ -37,9 +37,28 @@
   transform: none;
 }
 
-.skill-badge.is-dragging .skill-name,
+.skill-badge.is-dragging .skill-main,
 .skill-badge.is-dragging .skill-cat {
   visibility: hidden;
+}
+
+.skill-main {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.skill-logo {
+  width: 1.85rem;
+  height: 1.85rem;
+  max-width: 1.85rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+:host-context([data-theme='dark']) .skill-logo.is-mono {
+  filter: invert(1);
 }
 
 .skill-badge.is-over {
