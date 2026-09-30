@@ -346,16 +346,17 @@
   font-size: 1.15rem;
 }
 
-/* ── Mobile responsiveness ── */
-@media (max-width: 576px) {
+/* ── Mobile responsiveness (<= 768px) ── */
+@media (max-width: 768px) {
   .wa-container {
-    bottom: 5%;
-    right: 5%;
+    /* Stacked cleanly above the back-to-top button (20px bottom + 48px height + 12px gap) */
+    bottom: calc(max(1.25rem, env(safe-area-inset-bottom)) + 60px);
+    right: max(1rem, env(safe-area-inset-right));
   }
 
   .wa-popup {
     position: fixed;
-    bottom: 80px;
+    bottom: calc(max(1.25rem, env(safe-area-inset-bottom)) + 126px);
     right: 16px;
     left: 16px;
     width: auto;
