@@ -30,6 +30,11 @@ export class TechStackComponent {
   private grabY = 0;
 
   onPointerDown(event: PointerEvent, index: number): void {
+    // Disable drag on touch devices or small screens (<= 768px) so normal page scrolling works smoothly
+    if (this.isDragDisabled(event)) {
+      return;
+    }
+
     if (event.pointerType === 'mouse' && event.button !== 0) {
       return;
     }
@@ -119,5 +124,15 @@ export class TechStackComponent {
     this.overIndex.set(null);
     this.ghost.set(null);
     document.body.classList.remove('skill-dragging');
+  }
+
+  private isDragDisabled(event?: PointerEvent): boolean {
+    if (event?.pointerType === 'touch') {
+      return true;
+    }
+    if (typeof window !== 'undefined') {
+      return window.innerWidth <= 768 || window.matchMedia('(max-width: 768px)').matches;
+    }
+    return false;
   }
 }
