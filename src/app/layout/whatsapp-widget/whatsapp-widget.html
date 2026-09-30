@@ -1,0 +1,134 @@
+<!-- WhatsApp Floating Button & Chat Widget -->
+<div class="wa-container" [class.is-open]="isOpen()">
+
+  <!-- Backdrop overlay to dismiss on click outside on small screens -->
+  @if (isOpen()) {
+    <div class="wa-backdrop" (click)="close()" aria-hidden="true"></div>
+  }
+
+  <!-- Chat Popup Window -->
+  @if (isOpen()) {
+    <div
+      class="wa-popup card-surface"
+      role="dialog"
+      aria-labelledby="wa-modal-title"
+      aria-modal="true"
+    >
+      <!-- Header -->
+      <div class="wa-header">
+        <div class="wa-header-info">
+          <div class="wa-avatar-wrap">
+            <div class="wa-avatar">AZ</div>
+            <span class="wa-status-dot" aria-label="Online"></span>
+          </div>
+          <div class="wa-header-text">
+            <h3 id="wa-modal-title" class="wa-title">Adeel Zahid</h3>
+            <p class="wa-subtitle">
+              <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+              Typically replies in one hour
+            </p>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="wa-close-btn"
+          (click)="close()"
+          aria-label="Close WhatsApp popup"
+        >
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <!-- Chat Bubble Intro -->
+      <div class="wa-body">
+        <div class="wa-bubble">
+          <p class="wa-bubble-text">
+            Hi! 👋 How can I help you? Leave your details below and click send to chat directly with me on WhatsApp.
+          </p>
+          <span class="wa-bubble-time">Just now</span>
+        </div>
+
+        <!-- Form -->
+        <form class="wa-form" (submit)="onSubmit($event)">
+          <!-- Name field (Mandatory) -->
+          <div class="wa-field">
+            <label for="wa-name" class="wa-label">
+              Name <span class="wa-required">*</span>
+            </label>
+            <input
+              id="wa-name"
+              type="text"
+              class="wa-input"
+              [class.is-invalid]="isNameInvalid()"
+              placeholder="Your name"
+              [value]="name()"
+              (input)="updateName($event)"
+              autocomplete="name"
+            />
+            @if (isNameInvalid()) {
+              <span class="wa-error-text">Please enter your name</span>
+            }
+          </div>
+
+          <!-- Email field (Optional) -->
+          <div class="wa-field">
+            <label for="wa-email" class="wa-label">
+              Email <span class="wa-optional">(optional)</span>
+            </label>
+            <input
+              id="wa-email"
+              type="email"
+              class="wa-input"
+              placeholder="Your email"
+              [value]="email()"
+              (input)="updateEmail($event)"
+              autocomplete="email"
+            />
+          </div>
+
+          <!-- Message field (Mandatory) -->
+          <div class="wa-field">
+            <label for="wa-message" class="wa-label">
+              Message <span class="wa-required">*</span>
+            </label>
+            <textarea
+              id="wa-message"
+              rows="3"
+              class="wa-input wa-textarea"
+              [class.is-invalid]="isMessageInvalid()"
+              placeholder="Type your message here..."
+              [value]="message()"
+              (input)="updateMessage($event)"
+            ></textarea>
+            @if (isMessageInvalid()) {
+              <span class="wa-error-text">Please enter your message</span>
+            }
+          </div>
+
+          <!-- Send Action Button -->
+          <button type="submit" class="wa-submit-btn">
+            <i class="fa-brands fa-whatsapp wa-btn-icon" aria-hidden="true"></i>
+            <span>Send on WhatsApp</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  }
+
+  <!-- Main Floating Trigger Button -->
+  <button
+    type="button"
+    class="wa-trigger-btn"
+    [class.active]="isOpen()"
+    (click)="toggle()"
+    aria-label="Open WhatsApp quick contact"
+    [attr.aria-expanded]="isOpen()"
+  >
+    @if (!isOpen()) {
+      <i class="fa-brands fa-whatsapp wa-icon" aria-hidden="true"></i>
+      <span class="wa-badge-pulse" aria-hidden="true"></span>
+    } @else {
+      <i class="fa-solid fa-xmark wa-icon wa-close-icon" aria-hidden="true"></i>
+    }
+  </button>
+</div>
